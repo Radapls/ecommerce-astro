@@ -1,10 +1,28 @@
 ---
+import Instrument from "../components/Instrument.astro";
 import Layout from '../layouts/Layout.astro';
+
+const url = `${import.meta.env.PUBLIC_API_URL}/instruments?populate=image`;
+const respose = await fetch(url);
+const {data} = await respose.json();
+console.log(data)
 ---
 
 <Layout title="Tienda" description="Eccomerce site, blog, courses, and more">
 	<main class="contenedor">
 		<h1 class="heading">Tienda virtual</h1>
+
+		<div class="grid">
+			{data?.map( item => (
+				<Instrument
+				name={item.attributes.name}
+				description={item.attributes.description}
+				url={item.attributes.url}
+				price={item.attributes.price}
+				image={item.attributes.image.data.attributes.formats.medium.url}
+				/>
+			))}
+		</div>
 
 	</main>
 </Layout>
