@@ -1,12 +1,66 @@
 ---
+import Blog from "../components/Blog.astro";
+import Course from "../components/Course.astro";
+import Instrument from "../components/Instrument.astro";
 import Layout from '../layouts/Layout.astro';
+
+const urlInstruments = `${import.meta.env.PUBLIC_API_URL}/instruments?populate=image`;
+const urlBlog = `${import.meta.env.PUBLIC_API_URL}/blogs?populate=image`;
+const urlCourse = `${import.meta.env.PUBLIC_API_URL}/course?populate=image`;
+
+
+const [resInstruments, resBlog, resCourse] = await Promise.all ([
+	fetch(urlInstruments),
+	fetch(urlBlog),
+	fetch(urlCourse),
+]);
+
+const [{data: instruments}, {data: post}, {data: course}] = await Promise.all([
+	resInstruments.json(),
+	resBlog.json(),
+	resCourse.json(),
+]);
 ---
 
 <Layout title="Home" description="Eccomerce site, blog, courses, and more">
 	<main class="contenedor">
-		<h1 class="heading">Inicio</h1>
+		<h1 class="heading">Nuestra colección</h1>
+
+		<div class="grid">
+			{instruments?.map( item => (
+				<Instrument
+				name={item.attributes.name}
+				description={item.attributes.description}
+				url={item.attributes.url}
+				price={item.attributes.price}
+				image={item.attributes.image.data.attributes.formats.medium.url}
+				/>
+			))}
+		</div>
 
 	</main>
+
+	<Course
+		title={course.attributes.title}
+		content={course.attributes.content}
+		image={course.attributes.image.data.attributes.url}
+	/>
+
+	<section class="contenedor">
+		<h2 class="heading">Blog</h2>
+
+		<div class="grid">
+			{post?.map( item => (
+				<Blog
+					title={item.attributes.title}
+					publishedAt={item.attributes.publishedAt}
+					url={item.attributes.url}
+					content={item.attributes.content}
+					image={item.attributes.image.data.attributes.url}
+				/>
+				))}
+		</div>
+	</section>
 </Layout>
 
 <style>

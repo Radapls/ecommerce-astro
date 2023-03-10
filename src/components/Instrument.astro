@@ -13,12 +13,12 @@ const {name, description, url,price, image} = Astro.props;
 
     <img src={image} alt={`Instrumento`}>
 
-<div class="contenido">
-    <h3>{name}</h3>
-    <p class="descripcion">{description}</p>
-    <p class="precio">{price}</p>
-    <a href={`/instruments/${url}`} class="enlace">Ver producto</a>
-</div>
+    <div class="contenido">
+        <h3>{name}</h3>
+        <p class="descripcion">{description}</p>
+        <p class="precio">${price}</p>
+        <a href={`/instruments/${url}`} class="enlace">Ver producto</a>
+    </div>
 </div>
 
 <style>
