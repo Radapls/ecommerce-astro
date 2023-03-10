@@ -1,5 +1,8 @@
 ---
 import logo from '../img/Logo.png';
+
+const patname = Astro.url.pathname;
+
 ---
 <header class="header">
     <div class="contenedor barra">
@@ -8,13 +11,13 @@ import logo from '../img/Logo.png';
         </a>
 
         <nav class="navegacion">
-            <a href="/">Inicio</a>
+            <a href="/" class={patname === '/' ? 'active' : ''}>Inicio</a>
 
-            <a href="/about">Acerca</a>
+            <a href="/about" class={patname === '/about' ? 'active' : ''}>Acerca</a>
 
-            <a href="/blog">Blog</a>
+            <a href="/blog" class={patname === '/blog' ? 'active' : ''}>Blog</a>
 
-            <a href="/store">Tienda</a>
+            <a href="/store" class={patname === '/store' ? 'active' : ''}>Tienda</a>
         </nav>
 
     </div>

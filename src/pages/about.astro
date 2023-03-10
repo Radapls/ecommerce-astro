@@ -1,0 +1,36 @@
+---
+import about from '../img/white.png';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Acerca" description="Eccomerce site, blog, courses, and more">
+	<main class="contenedor">
+		<h1 class="heading">Acerca</h1>
+
+		<div class="contenido">
+
+			<img src={about} alt="Gorila white" draggable="false">
+
+			<div>
+				<p>
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et ligula vel sapien mattis tristique nec ac augue. Pellentesque eu tellus rhoncus, auctor velit et, volutpat leo. Vivamus eget augue in nulla pretium maximus ut id nibh. Curabitur vel consectetur nisl. Vivamus accumsan tortor et ex dapibus, et vehicula nibh suscipit. Phasellus ac felis in augue aliquet bibendum in nec sapien. Fusce leo mi, facilisis eget ligula a, bibendum porta quam. Sed sem arcu, volutpat id finibus non, tempor eget purus. Etiam ultrices lorem et risus vulputate, gravida egestas velit lobortis. Ut non pellentesque augue, egestas mattis mi. Vivamus pellentesque est faucibus felis pellentesque dictum. Etiam non lacus efficitur, pharetra turpis ac, volutpat lacus. Maecenas pharetra semper leo, ut vulputate diam varius et.
+				</p>
+			</div>
+
+		</div>
+
+	</main>
+</Layout>
+
+<style>
+	.contenido {
+    display: grid;
+    gap: 4rem;
+}
+@media (min-width: 768px) {
+    .contenido {
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+    }
+}
+</style>
