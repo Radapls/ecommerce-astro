@@ -5,7 +5,6 @@ import Layout from '../layouts/Layout.astro';
 const url = `${import.meta.env.PUBLIC_API_URL}/instruments?populate=image`;
 const respose = await fetch(url);
 const {data} = await respose.json();
-console.log(data)
 ---
 
 <Layout title="Tienda" description="Eccomerce site, blog, courses, and more">
